@@ -1,4 +1,4 @@
-# ?? Distributed Honeypot Network with Tamper-Proof Blockchain Logging for Cyber Threat Intelligence 
+# Distributed Honeypot Network with Tamper-Proof Blockchain Logging for Cyber Threat Intelligence 
  
 ![Python](https://img.shields.io/badge/Python-3.8+-blue) ![Docker](https://img.shields.io/badge/Docker-24+-blue) ![ELK](https://img.shields.io/badge/ELK-8.11.0-green) ![Status](https://img.shields.io/badge/Status-Complete-brightgreen) 
  
@@ -6,13 +6,13 @@ A distributed cybersecurity system deploying multiple Cowrie SSH honeypots, coll
  
 --- 
  
-## ?? Project Overview 
+## Project Overview 
  
 Traditional honeypots operate in isolation and their logs can be tampered with by sophisticated attackers or malicious insiders. This project addresses both problems by deploying distributed honeypots with centralized ELK Stack analysis and blockchain-based tamper-proof logging. 
  
 --- 
  
-## ??? Architecture 
+## Architecture 
  
 | Layer | Technology | Purpose | 
 |-------|------------|---------| 
@@ -25,7 +25,7 @@ Traditional honeypots operate in isolation and their logs can be tampered with b
  
 --- 
  
-## ?? How to Run This Project 
+## How to Run This Project 
  
 ### Prerequisites 
 - Ubuntu 22.04 or higher 
@@ -60,7 +60,7 @@ You should see 7 containers all with STATUS "Up": honeypot-node-1 (port 2222), h
  
 --- 
  
-## ?? Testing the Honeypots 
+## Testing the Honeypots 
  
 ```bash 
 # Connect to honeypot 1 
@@ -84,7 +84,7 @@ docker logs honeypot-node-3 --tail 20
  
 --- 
  
-## ?? Blockchain Logger 
+##  Blockchain Logger 
  
 ### Run the Blockchain 
 ```bash 
@@ -95,7 +95,7 @@ You will see all blocks with unique SHA-256 hashes, previous hash linking, "ALL 
  
 --- 
  
-## ?? Tamper Detection Demo 
+##  Tamper Detection Demo 
  
 ```bash 
 python3 << 'EOF' 
@@ -113,7 +113,7 @@ If tampering occurred you will see "BLOCK #2 TAMPERED - Hash mismatch!" proving 
  
 --- 
  
-## ?? Kibana Dashboard 
+##  Kibana Dashboard 
  
 1. Open Firefox and go to http://localhost:5601 
 2. Click "Explore on my own" 
@@ -126,7 +126,7 @@ If tampering occurred you will see "BLOCK #2 TAMPERED - Hash mismatch!" proving 
  
 --- 
  
-## ?? Stopping the System 
+##  Stopping the System 
  
 ```bash 
 docker compose down           # Stop containers, preserve data 
@@ -135,27 +135,27 @@ docker compose down -v        # Stop and delete all data
  
 --- 
  
-## ?? Project Structure 
+##  Project Structure 
  
 ``` 
 honeypot-blockchain-project/ 
-ÃÄÄ docker-compose.yml              # Container orchestration 
-ÃÄÄ blockchain-logger/ 
-³   ÃÄÄ blockchain.py               # Blockchain implementation 
-³   ÀÄÄ log_watcher.py              # Log monitoring script 
-ÃÄÄ elk-configs/ 
-³   ÀÄÄ logstash.conf               # Log parsing pipeline 
-ÃÄÄ filebeat-configs/ 
-³   ÀÄÄ filebeat.yml                # Log shipping configuration 
-ÃÄÄ cowrie-configs/                  # Honeypot configurations 
-ÃÄÄ docs/ 
-³   ÀÄÄ IEEE_Research_Paper.docx    # IEEE research paper 
-ÀÄÄ README.md 
+ÃƒÃ„Ã„ docker-compose.yml              # Container orchestration 
+ÃƒÃ„Ã„ blockchain-logger/ 
+Â³   ÃƒÃ„Ã„ blockchain.py               # Blockchain implementation 
+Â³   Ã€Ã„Ã„ log_watcher.py              # Log monitoring script 
+ÃƒÃ„Ã„ elk-configs/ 
+Â³   Ã€Ã„Ã„ logstash.conf               # Log parsing pipeline 
+ÃƒÃ„Ã„ filebeat-configs/ 
+Â³   Ã€Ã„Ã„ filebeat.yml                # Log shipping configuration 
+ÃƒÃ„Ã„ cowrie-configs/                  # Honeypot configurations 
+ÃƒÃ„Ã„ docs/ 
+Â³   Ã€Ã„Ã„ IEEE_Research_Paper.docx    # IEEE research paper 
+Ã€Ã„Ã„ README.md 
 ``` 
  
 --- 
  
-## ??? Key Features 
+##  Key Features 
  
 - ? 3 distributed honeypot nodes via Docker 
 - ? Real-time attack data collection 
@@ -168,7 +168,7 @@ honeypot-blockchain-project/
  
 --- 
  
-## ?? Troubleshooting 
+##  Troubleshooting 
  
 | Problem | Solution | 
 |---------|----------| 
@@ -179,12 +179,6 @@ honeypot-blockchain-project/
 | Containers restarting | Check logs: docker logs container-name | 
  
 --- 
- 
-## ?? Team 
- 
-- **Hala Fouad** - Project Lead 
-- Teammate Name - Role 
-- Teammate Name - Role 
  
 --- 
  
