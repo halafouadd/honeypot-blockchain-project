@@ -117,12 +117,12 @@ If tampering occurred you will see "BLOCK #2 TAMPERED - Hash mismatch!" proving 
  
 1. Open Firefox and go to http://localhost:5601 
 2. Click "Explore on my own" 
-3. Menu ?  Stack Management  Data Views 
+3. Menu ?  Stack Management  Data Views 
 4. Click "Create data view" 
 5. Name: honeypot-logs-* 
 6. Time field: @timestamp 
 7. Click "Save data view to Kibana" 
-8. Menu ?  Discover to view attack logs 
+8. Menu ? Discover to view attack logs 
  
 --- 
  
