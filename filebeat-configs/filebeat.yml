@@ -1,0 +1,18 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/cowrie1/cowrie.log
+      - /var/log/cowrie2/cowrie.log
+      - /var/log/cowrie3/cowrie.log
+    fields:
+      honeypot_type: cowrie_ssh
+    multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
+    multiline.negate: true
+    multiline.match: after
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+logging.level: info
+logging.to_files: false

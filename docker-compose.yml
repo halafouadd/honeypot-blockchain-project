@@ -1,0 +1,112 @@
+services:
+  cowrie1:
+    image: cowrie/cowrie:latest
+    container_name: honeypot-node-1
+    hostname: honeypot1
+    ports:
+      - "2222:2222"
+      - "23:2223"
+    volumes:
+      - cowrie1_logs:/cowrie/cowrie-git/var/log/cowrie
+      - cowrie1_tty:/cowrie/cowrie-git/var/lib/cowrie/tty
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+  cowrie2:
+    image: cowrie/cowrie:latest
+    container_name: honeypot-node-2
+    hostname: honeypot2
+    ports:
+      - "2223:2222"
+      - "2323:2223"
+    volumes:
+      - cowrie2_logs:/cowrie/cowrie-git/var/log/cowrie
+      - cowrie2_tty:/cowrie/cowrie-git/var/lib/cowrie/tty
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+  cowrie3:
+    image: cowrie/cowrie:latest
+    container_name: honeypot-node-3
+    hostname: honeypot3
+    ports:
+      - "2224:2222"
+      - "2324:2223"
+    volumes:
+      - cowrie3_logs:/cowrie/cowrie-git/var/log/cowrie
+      - cowrie3_tty:/cowrie/cowrie-git/var/lib/cowrie/tty
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx2g
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: logstash
+    ports:
+      - "5044:5044"
+    volumes:
+      - ./elk-configs/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.11.0
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat-configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - cowrie1_logs:/var/log/cowrie1:ro
+      - cowrie2_logs:/var/log/cowrie2:ro
+      - cowrie3_logs:/var/log/cowrie3:ro
+    command: filebeat -e -strict.perms=false
+    depends_on:
+      - logstash
+    restart: unless-stopped
+    networks:
+      - honeynet
+
+volumes:
+  cowrie1_logs:
+  cowrie2_logs:
+  cowrie3_logs:
+  cowrie1_tty:
+  cowrie2_tty:
+  cowrie3_tty:
+  es_data:
+
+networks:
+  honeynet:
+    driver: bridge
