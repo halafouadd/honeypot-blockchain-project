@@ -157,14 +157,14 @@ honeypot-blockchain-project/
  
 ##  Key Features 
  
-- ? 3 distributed honeypot nodes via Docker 
-- ? Real-time attack data collection 
-- ? Centralized log analysis with ELK Stack 
-- ? Tamper-proof blockchain logging using SHA-256 
-- ? Cryptographic integrity verification 
-- ? Kibana threat intelligence dashboard 
-- ? Insider threat detection demonstration 
-- ? IEEE format research paper included 
+-  3 distributed honeypot nodes via Docker 
+-  Real-time attack data collection 
+-  Centralized log analysis with ELK Stack 
+-  Tamper-proof blockchain logging using SHA-256 
+-  Cryptographic integrity verification 
+-  Kibana threat intelligence dashboard 
+-  Insider threat detection demonstration 
+-  IEEE format research paper included 
  
 --- 
  
@@ -182,7 +182,7 @@ honeypot-blockchain-project/
  
 --- 
  
-## ?? Documentation 
+## Documentation 
  
 IEEE Research Paper available in docs/IEEE_Research_Paper.docx 
  
